@@ -26,3 +26,15 @@
 *.exe
 *.out
 *.app
+
+packages/
+
+\.vs/
+
+ScriptHookW3/x64/
+
+x64/
+
+*.opensdf
+
+*.sdf
