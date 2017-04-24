@@ -4,7 +4,6 @@
 // Initialize global objects
 DEFX64HOOK(w3::checkSameType);
 DEFX64HOOK(w3::register_math_functions);
-//DEFX64HOOK(w3::CRTTISystem_constructor);
 
 // These are not hooked, we just get a pointer to them and use that
 DEFX64FUNC(w3::CName_set);
@@ -28,9 +27,3 @@ void w3::register_math_functions() {
 	void* func_mapping = w3::registerGlobalFunc_orig(unknown, &name, &shw3::exampleFunction);
 	w3::CRTTISystem_registerGlobalFunc_orig(w3::global_rtti_system, func_mapping);
 }
-
-//w3::CRTTISystem* w3::CRTTISystem_constructor() {
-//	CRTTISystem* rtti = w3::CRTTISystem_constructor_orig();
-//	global_rtti_system = rtti;
-//	return rtti;
-//}

@@ -25,7 +25,6 @@ fullname ## _type fullname ## _orig;
 namespace w3 {
 	DECX64HOOK(checkSameType, bool, (void* type1, void* type2));
 	DECX64HOOK(register_math_functions, void, ());
-	// DECX64HOOK(CRTTISystem_constructor, CRTTISystem*, ());
 
 	DECX64FUNC(CName_set, void, (const CName* self, wchar_t const * name));
 	DECX64FUNC(registerGlobalFunc, void*, (void* unknown, CName* name, void* func));

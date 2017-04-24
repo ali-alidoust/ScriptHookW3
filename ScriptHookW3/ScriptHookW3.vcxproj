@@ -169,6 +169,7 @@
     <ClInclude Include="PolyHook.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="targetver.h" />
+    <ClInclude Include="utils.h" />
     <ClInclude Include="w3types.h" />
     <ClInclude Include="yara-helper.h" />
     <ClInclude Include="yara-patterns.h" />
@@ -193,6 +194,7 @@
     <ClCompile Include="main.cpp" />
     <ClCompile Include="PolyHook.cpp" />
     <ClCompile Include="stdafx.cpp" />
+    <ClCompile Include="utils.cpp" />
     <ClCompile Include="yara-helper.cpp" />
   </ItemGroup>
   <ItemGroup>
