@@ -17,7 +17,7 @@ void shw3::Main::initialize()
 
 	void* check_same_type_ptr = nullptr;
 	void* cname_set_ptr = nullptr;
-	void* get_something_for_register_global_function_base_addr = nullptr;
+	void* get_function_mapper_base_addr = nullptr;
 	void* register_global_func_ptr = nullptr;
 	void* crtti_register_global_func_ptr = nullptr;
 	void* crttisystem_constructor_ptr = nullptr;
@@ -25,7 +25,7 @@ void shw3::Main::initialize()
 	yara->addEntry("yara_check_same_type_function", yara_check_same_type_function, &check_same_type_ptr);
 	yara->addEntry("cname_set_ptr", yara_cname_set_function, &cname_set_ptr);
 	yara->addEntry("yara_register_global_function", yara_register_global_function, &register_global_func_ptr);
-	yara->addEntry("yara_get_something_for_register_global_function_34", yara_get_something_for_register_global_function_34, &get_something_for_register_global_function_base_addr);
+	yara->addEntry("yara_get_function_mapper_34", yara_get_function_mapper_34, &get_function_mapper_base_addr);
 	yara->addEntry("yara_crttisystem_register_global_func", yara_crttisystem_register_global_func, &crtti_register_global_func_ptr);
 	yara->addEntry("yara_crttisystem_constructor", yara_crttisystem_constructor, &crttisystem_constructor_ptr);
 	yara->addEntry("yara_crttisystem_pointer_base_22", yara_crttisystem_pointer_base_22, &crttisystem_pointer_base_ptr);
@@ -35,7 +35,7 @@ void shw3::Main::initialize()
 	NOT_NULL(check_same_type_ptr, "Could not find the address for CheckSameType() function");
 	NOT_NULL(cname_set_ptr, "Failed to get the address for CName::set(wchar_t const *) function");
 	NOT_NULL(register_global_func_ptr, "Failed to get the address for registerGlobalFunc() function");
-	NOT_NULL(get_something_for_register_global_function_base_addr, "Failed to get the address for get_something_for_register_global_function... function");
+	NOT_NULL(get_function_mapper_base_addr, "Failed to get the address for getFunctionMapper()... function");
 	NOT_NULL(crtti_register_global_func_ptr, "Failed to get the address for CRTTISystem::registerGlobalFunc() function");
 	NOT_NULL(crttisystem_constructor_ptr, "Failed to get the address for CRTTISystem::CRTTISystem() function");
 	NOT_NULL(crttisystem_pointer_base_ptr, "Failed to get the address for global CRTTISystem instance");
@@ -47,8 +47,8 @@ void shw3::Main::initialize()
 
 	// FIXME: Write something neat instead of this shit :D
 	{
-		intptr_t offset = (intptr_t)*(int32_t*)(((char*)get_something_for_register_global_function_base_addr) + 34);
-		w3::getSomethingForRegisterGlobalFunc_orig = (w3::getSomethingForRegisterGlobalFunc_type)(offset + ((char*)get_something_for_register_global_function_base_addr + 38));
+		intptr_t offset = (intptr_t)*(int32_t*)(((char*)get_function_mapper_base_addr) + 34);
+		w3::getFunctionMapper_orig = (w3::getFunctionMapper_type)(offset + ((char*)get_function_mapper_base_addr + 38));
 	}
 	{
 		intptr_t offset = (intptr_t)*(int32_t*)(((char*)crttisystem_pointer_base_ptr) + 22);
@@ -57,7 +57,7 @@ void shw3::Main::initialize()
 	this->register_global_functions();
 	
 	REQUIRE(HOOKX64(check_same_type_ptr, w3::checkSameType), "Failed to hook CheckSameType() function.");
-	REQUIRE(HOOKX64(get_something_for_register_global_function_base_addr, w3::register_math_functions), "Failed to hook register_math_functions() function.");
+	REQUIRE(HOOKX64(get_function_mapper_base_addr, w3::register_math_functions), "Failed to hook register_math_functions() function.");
 	// REQUIRE(HOOKX64(crttisystem_constructor_ptr, w3::CRTTISystem_constructor), "Failed to hook CRTTISystem::CRTTISystem() function");
 }
 

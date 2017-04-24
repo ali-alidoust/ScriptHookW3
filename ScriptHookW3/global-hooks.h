@@ -29,7 +29,7 @@ namespace w3 {
 
 	DECX64FUNC(CName_set, void, (const CName* self, wchar_t const * name));
 	DECX64FUNC(registerGlobalFunc, void*, (void* unknown, CName* name, void* func));
-	DECX64FUNC(getSomethingForRegisterGlobalFunc, void*, (int32_t a, int32_t b, int64_t c));
+	DECX64FUNC(getFunctionMapper, void*, (int32_t a, int32_t b, int64_t c));
 	DECX64FUNC(CRTTISystem_registerGlobalFunc, void, (CRTTISystem* rtti, void* func_mapping));
 
 	extern CRTTISystem* global_rtti_system;
