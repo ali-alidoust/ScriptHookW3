@@ -1,13 +1,13 @@
 #include "yara-helper.h"
 #include "logger.h"
 
-YaraHelper::~YaraHelper()
+shw3::YaraHelper::~YaraHelper()
 {
 	LOG_CALL(LL_DBG, yr_compiler_destroy(this->pYrCompiler));
 	LOG_CALL(LL_DBG, yr_finalize());
 }
 
-void YaraHelper::initialize()
+void shw3::YaraHelper::initialize()
 {
 	PRE();
 	this->moduleHandle = ::GetModuleHandle(NULL);
@@ -27,7 +27,7 @@ void YaraHelper::initialize()
 	POST();
 }
 
-void YaraHelper::performScan()
+void shw3::YaraHelper::performScan()
 {
 	PRE();
 
@@ -46,12 +46,12 @@ void YaraHelper::performScan()
 	POST();
 }
 
-void YaraHelper::addEntry(std::string name, std::string pattern, void ** dest) {
+void shw3::YaraHelper::addEntry(std::string name, std::string pattern, void ** dest) {
 	REQUIRE(yr_compiler_add_string(this->pYrCompiler, build_yara_rule(name, pattern).c_str(), NULL), "Failed to compile yara rule");
 	entries[name] = entry(name, pattern, dest);
 }
 
-inline std::string YaraHelper::build_yara_rule(std::string name, std::string pattern) {
+inline std::string shw3::YaraHelper::build_yara_rule(std::string name, std::string pattern) {
 	return "	rule " + name + R"__(
 	{
 		strings:
@@ -63,7 +63,7 @@ inline std::string YaraHelper::build_yara_rule(std::string name, std::string pat
 	)__";
 }
 
-int YaraHelper::callback_function(int message, void * message_data, void * user_data)
+int shw3::YaraHelper::callback_function(int message, void * message_data, void * user_data)
 {
 	PRE();
 	YaraHelper* pThis = static_cast<YaraHelper*>(user_data);

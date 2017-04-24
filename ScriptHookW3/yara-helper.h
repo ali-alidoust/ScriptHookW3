@@ -12,42 +12,44 @@ extern "C" {
 #include <yara\compiler.h>
 }
 
-class YaraHelper {
-public:
+namespace shw3 {
+	class YaraHelper {
+	public:
 
-	~YaraHelper();
+		~YaraHelper();
 
-	void initialize();
-	void performScan();
+		void initialize();
+		void performScan();
 
-	void addEntry(std::string name, std::string pattern, void** dest);
+		void addEntry(std::string name, std::string pattern, void** dest);
 
-private:
+	private:
 
-	struct entry {
-		entry(std::string name, std::string pattern, void** dest) :
-			name(name),
-			pattern(pattern),
-			dest(dest)
-		{ }
+		struct entry {
+			entry(std::string name, std::string pattern, void** dest) :
+				name(name),
+				pattern(pattern),
+				dest(dest)
+			{ }
 
-		entry() { }
+			entry() { }
 
-		std::string name;
-		std::string pattern;
-		void** dest;
+			std::string name;
+			std::string pattern;
+			void** dest;
+		};
+
+		std::map<std::string, entry> entries;
+
+		YR_COMPILER* pYrCompiler;
+		YR_RULES* rules;
+
+		HMODULE moduleHandle;
+		MODULEINFO moduleInfo;
+		std::mutex mxScan;
+		std::condition_variable cvScan;
+		bool isScanFinished = false;
+		static int callback_function(int message, void* message_data, void* user_data);
+		static std::string build_yara_rule(std::string name, std::string pattern);
 	};
-
-	std::map<std::string, entry> entries;
-
-	YR_COMPILER* pYrCompiler;
-	YR_RULES* rules;
-
-	HMODULE moduleHandle;
-	MODULEINFO moduleInfo;
-	std::mutex mxScan;
-	std::condition_variable cvScan;
-	bool isScanFinished = false;
-	static int callback_function(int message, void* message_data, void* user_data);
-	static std::string build_yara_rule(std::string name, std::string pattern);
-};
+}

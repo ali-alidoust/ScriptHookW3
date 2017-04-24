@@ -4,6 +4,8 @@
 #include "PolyHook.h"
 #include "logger.h"
 
+#define HOOKX64(pointer, function) hookX64Function(pointer, &function, &function ## _orig, function ## _hook)
+
 namespace shw3 {
 	template <class CLASS_TYPE, class FUNC_TYPE>
 	HRESULT hookVirtualFunction(CLASS_TYPE *pInstance, int vFuncIndex, LPVOID hookFunc, FUNC_TYPE *originalFunc, std::shared_ptr<PLH::VFuncDetour> VFuncDetour_Ex) {
