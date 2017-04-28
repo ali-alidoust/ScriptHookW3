@@ -58,7 +58,12 @@ namespace shw3 {
 		std::string getTimestamp();
 		std::string getThreadId();
 		std::string getLogLevelString(LogLevel level);
+
+#ifdef _DEBUG
+		LogLevel level = LL_TRC;
+#else
 		LogLevel level = LL_NFO;
+#endif // _DEBUG
 
 		static Logger& instance()
 		{

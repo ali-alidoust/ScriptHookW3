@@ -14,7 +14,7 @@ fullname ## :: ## __constructor_type = nullptr;
 class TString
 {
 public:
-	DECLARE_CONSTRUCTOR(TString, (void));
+	// DECLARE_CONSTRUCTOR(TString, (void));
 	TString();
 	~TString();
 };
