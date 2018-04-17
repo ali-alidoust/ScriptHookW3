@@ -6,7 +6,6 @@
 #include "hook.h"
 #include "w3types.h"
 #include "utils.h"
-#include <iostream>
 
 void shw3::Main::initialize()
 {
