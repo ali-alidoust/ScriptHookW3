@@ -1,3 +1,6 @@
 [submodule "PolyHook"]
 	path = PolyHook
 	url = https://github.com/stevemk14ebr/PolyHook.git
+[submodule "Yara"]
+	path = Yara
+	url = https://github.com/VirusTotal/yara/libyara

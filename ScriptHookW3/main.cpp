@@ -6,9 +6,11 @@
 #include "hook.h"
 #include "w3types.h"
 #include "utils.h"
+#include <iostream>
 
 void shw3::Main::initialize()
 {
+	LOG(LogLevel::LL_NFO,"ScriptHookW3 Loaded!")
 	std::shared_ptr<YaraHelper> yara;
 	yara.reset(new YaraHelper());
 	yara->initialize();
