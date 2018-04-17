@@ -74,7 +74,7 @@
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
-    <IncludePath>$(SolutionDir)\PolyHook\PolyHook;$(IncludePath)</IncludePath>
+    <IncludePath>$(SolutionDir)\PolyHook\PolyHook;$(SolutionDir)\Yara\libyara\include;$(IncludePath)</IncludePath>
     <LibraryPath>$(SolutionDir)\PolyHook\Capstone\msvc\x64\Debug;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
